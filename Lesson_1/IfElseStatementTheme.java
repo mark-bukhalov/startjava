@@ -58,33 +58,33 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах");
-        short myNum1 = 121;
-        short myNum2 = 321;
+        int myNum1 = 121;
+        int myNum2 = 321;
         String sameDigits;
         System.out.println(myNum1 + " " + myNum2);
-        byte myNumOnes1 = (byte) (myNum1 % 10);
-        byte myNumTens1 = (byte) ((myNum1 / 10) % 10);
-        byte myNumHundreds1 = (byte) ((myNum1 / 100) % 10);
-        byte myNumOnes2 = (byte) (myNum2 % 10);
-        byte myNumTens2 = (byte) ((myNum2 / 10) % 10);
-        byte myNumHundreds2 = (byte) ((myNum2 / 100) % 10);
-        if (myNumOnes1 == myNumOnes2) {
-            System.out.print(myNumOnes1);
+        byte Ones1 = (byte) (myNum1 % 10);
+        byte Tens1 = (byte) ((myNum1 / 10) % 10);
+        byte Hundreds1 = (byte) ((myNum1 / 100) % 10);
+        byte Ones2 = (byte) (myNum2 % 10);
+        byte Tens2 = (byte) ((myNum2 / 10) % 10);
+        byte Hundreds2 = (byte) ((myNum2 / 100) % 10);
+        if (Ones1 == Ones2) {
+            System.out.print(Ones1);
         }
-        if (myNumTens1 == myNumTens2) {
-            System.out.print(myNumTens1);
+        if (Tens1 == Tens2) {
+            System.out.print(Tens1);
         }
-        if (myNumHundreds1 == myNumHundreds2) {
-            System.out.print(myNumHundreds1);
+        if (Hundreds1 == Hundreds2) {
+            System.out.print(Hundreds1);
         }
         System.out.println();
-        if (myNumOnes1 == myNumOnes2) {
+        if (Ones1 == Ones2) {
             System.out.print("1");
         }
-        if (myNumTens1 == myNumTens2) {
+        if (Tens1 == Tens2) {
             System.out.print("2");
         }
-        if (myNumHundreds1 == myNumHundreds2) {
+        if (Hundreds1 == Hundreds2) {
             System.out.print("3");
         }
 
@@ -137,17 +137,16 @@ public class IfElseStatementTheme {
 
         System.out.println("\n8. Подсчет количества банкнот");
         int reqAmount = 567;
-        int numberOnes = reqAmount % 10;
-        int numberTens = (reqAmount / 10) % 10;
-        int numberHundreds = (reqAmount / 100) % 10;
-        if (numberTens > 5) {
-            numberOnes += (numberTens - 5) * 10;
-            numberTens = 5;
+        int Ones = reqAmount % 10;
+        int Tens = (reqAmount / 10) % 10;
+        int Hundreds = (reqAmount / 100) % 10;
+        if (Tens > 5) {
+            Ones += (Tens - 5) * 10;
+            Tens = 5;
         }
-        int checkReqAmount = numberHundreds * 100 + numberTens * 10 + numberOnes;
+        int checkReqAmount = Hundreds * 100 + Tens * 10 + Ones;
         System.out.println("100 10 1");
-        System.out.println(numberHundreds + " " + numberTens + " " + numberOnes);
+        System.out.println(Hundreds + " " + Tens + " " + Ones);
         System.out.println(checkReqAmount);
-
     }
 }
