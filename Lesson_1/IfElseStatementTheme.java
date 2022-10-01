@@ -1,14 +1,14 @@
 public class IfElseStatementTheme {
     public static void main(String[] args) {
         System.out.println("1. Перевод псевдокода на язык Java");
-        byte age = 24;
+        int age = 24;
         char gender = 'M';
         float height = 1.73f;
         String name = "Mark";
         if (age > 20) {
             System.out.println("Возраст более 20 лет");
         } else {
-            System.out.println("Возраст мменьше или равен 20");
+            System.out.println("Возраст меньше или равен 20");
         }
         if (gender != 'M') {
             System.out.println("Пол женский");
@@ -30,8 +30,8 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n2. Поиск max и min числа");
-        byte num1 = 100;
-        byte num2 = 77;
+        int num1 = 100;
+        int num2 = 77;
         if (num1 > num2) {
             System.out.println("max:" + num1 + '\t' + "min:" + num2);
         } else if (num2 > num1) {
@@ -41,16 +41,16 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n3. Работа с числом");
-        int myNum = 60001;
-        if (myNum == 0) {
+        int srcNum = 60001;
+        if (srcNum == 0) {
             System.out.println("Число равно нулю");
         } else {
-            if (myNum % 2 == 0) {
+            if (srcNum % 2 == 0) {
                 System.out.println("Число чётное");
             } else {
                 System.out.println("Число нечетное");
             }
-            if (myNum > 0) {
+            if (srcNum > 0) {
                 System.out.println("Число положительное");
             } else {
                 System.out.println("Число отрицательное");
@@ -58,37 +58,45 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах");
-        int myNum1 = 121;
-        int myNum2 = 321;
-        String sameDigits;
-        System.out.println(myNum1 + " " + myNum2);
-        byte Ones1 = (byte) (myNum1 % 10);
-        byte Tens1 = (byte) ((myNum1 / 10) % 10);
-        byte Hundreds1 = (byte) ((myNum1 / 100) % 10);
-        byte Ones2 = (byte) (myNum2 % 10);
-        byte Tens2 = (byte) ((myNum2 / 10) % 10);
-        byte Hundreds2 = (byte) ((myNum2 / 100) % 10);
-        if (Ones1 == Ones2) {
-            System.out.print(Ones1);
+        int srcNum1 = 121;
+        int srcNum2 = 321;
+        int ones1 = srcNum1 % 10;
+        int tens1 = (srcNum1 / 10) % 10;
+        int hundreds1 = (srcNum1 / 100) % 10;
+        int ones2 = srcNum2 % 10;
+        int tens2 = (srcNum2 / 10) % 10;
+        int hundreds2 = (srcNum2 / 100) % 10;
+        System.out.println("Исходные числа: " + srcNum1 + " и " +srcNum2);
+        if (ones1 == ones2) {
+            System.out.println("Разряд 1, одинаковое число " + ones1);
         }
-        if (Tens1 == Tens2) {
-            System.out.print(Tens1);
+        if (tens1 == tens2) {
+            System.out.println("Разряд 2, одинаковое число " + tens1);
         }
-        if (Hundreds1 == Hundreds2) {
-            System.out.print(Hundreds1);
-        }
-        System.out.println();
-        if (Ones1 == Ones2) {
-            System.out.print("1");
-        }
-        if (Tens1 == Tens2) {
-            System.out.print("2");
-        }
-        if (Hundreds1 == Hundreds2) {
-            System.out.print("3");
+        if (hundreds1 == hundreds2) {
+            System.out.println("Разряд 3, одинаковое число " + hundreds1);
         }
 
-        System.out.println("\n\n6. Определение суммы вклада и начисленных банком %");
+        System.out.println("\n5. Определение буквы, числа или символа по их коду");
+        char symbol = '\u0057';
+        char begDigit = '0';
+        char endDigit = '9';
+        char begSmallLetter = 'a';
+        char endSmallLetter = 'z';
+        char begCapitalLetter = 'A';
+        char endCapitalLetter = 'Z';
+        System.out.print(symbol);
+        if (symbol >= begDigit & symbol <= endDigit) {
+            System.out.println(" число");
+        } else if (symbol >= begSmallLetter & symbol <= endSmallLetter){
+            System.out.println(" маленькая буква");
+        } else if (symbol >= begCapitalLetter & symbol <= endCapitalLetter){
+            System.out.println(" большая буква");
+        } else {
+            System.out.println(" не буква и не число");
+        }
+
+        System.out.println("\n6. Определение суммы вклада и начисленных банком %");
         int depositAmount = 300_000;
         float interestDeposit;
         if (depositAmount < 100_000) {
@@ -101,10 +109,10 @@ public class IfElseStatementTheme {
         System.out.println(depositAmount + "\n" + interestDeposit + "\n" + (depositAmount + interestDeposit));
 
         System.out.println("\n7. Определение оценки по предметам");
-        byte percentHistory = 59;
-        byte percentProgramming = 91;
-        byte scoreHistory;
-        byte scoreProgramming;
+        int percentHistory = 59;
+        int percentProgramming = 91;
+        int scoreHistory;
+        int scoreProgramming;
         if (percentHistory > 91) {
             scoreHistory = 5;
         } else if (percentHistory > 73) {
@@ -135,18 +143,20 @@ public class IfElseStatementTheme {
             System.out.println("прибыль за год: " + annualProfit + " руб.\n");
         }
 
-        System.out.println("\n8. Подсчет количества банкнот");
+        System.out.println("9. Подсчет количества банкнот");
         int reqAmount = 567;
-        int Ones = reqAmount % 10;
-        int Tens = (reqAmount / 10) % 10;
-        int Hundreds = (reqAmount / 100) % 10;
-        if (Tens > 5) {
-            Ones += (Tens - 5) * 10;
-            Tens = 5;
+        int ones = reqAmount % 10;
+        int tens = (reqAmount / 10) % 10;
+        int hundreds = (reqAmount / 100) % 10;
+        final int MAX_TENS = 5;
+        if (tens > MAX_TENS) {
+            ones += (tens - MAX_TENS) * 10;
+            tens = MAX_TENS;
         }
-        int checkReqAmount = Hundreds * 100 + Tens * 10 + Ones;
-        System.out.println("100 10 1");
-        System.out.println(Hundreds + " " + Tens + " " + Ones);
-        System.out.println(checkReqAmount);
+        int checkReqAmount = hundreds * 100 + tens * 10 + ones;
+        System.out.printf("Номинал: %3s\tКоличество: %2s\n", 1, ones);
+        System.out.printf("Номинал: %3s\tКоличество: %2s\n", 10, tens);
+        System.out.printf("Номинал: %3s\tКоличество: %2s\n", 100, hundreds);
+        System.out.println("Проверочная сумма: " + checkReqAmount);
     }
 }

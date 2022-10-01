@@ -1,17 +1,17 @@
 public class VariablesTheme {
     public static void main(String[] args) {
         System.out.println("1. Создание переменных и вывод их значений на консоль");
-        byte numProcCorse = 2;
-        short VolumeRam = 8;
-        int VolumeSsd = 128;
+        byte numCpuCorse = 2;
+        short volumeRam = 8;
+        int volumeSsd = 128;
         long batteryCap = 4400;
         float monitorDiagonal = 21.5f;
         double cpuFreq = 2.5d;
         char cpuVersion = 'U';
         boolean wifi = true;
-        System.out.println("Количество ядер:" + " " + numProcCorse);
-        System.out.println("Оперативная память(Гб):" + " " + VolumeRam);
-        System.out.println("Объем диска(Гб):" + " " + VolumeSsd);
+        System.out.println("Количество ядер:" + " " + numCpuCorse);
+        System.out.println("Оперативная память(Гб):" + " " + volumeRam);
+        System.out.println("Объем диска(Гб):" + " " + volumeSsd);
         System.out.println("Ёмкость батареи(мА*ч):" + " " + batteryCap);
         System.out.println("Диагональ монитора(Дюйм):" + " " + monitorDiagonal);
         System.out.println("Тактовая частота процессора(ГГц):" + " " + cpuFreq);
@@ -87,14 +87,11 @@ public class VariablesTheme {
         System.out.println((int) symbol5 + " " + symbol5 + "\n");
 
         System.out.println("7. Отображение количества сотен, десятков и единиц числа");
-        byte number = 123;
-        int Ones = number % 10;
-        int Tens = (number / 10) % 10;
-        int Hundreds = (number / 100) % 10;
-        System.out.println("Число N содержит:");
-        System.out.println(Hundreds + " сотен");
-        System.out.println(Tens + " десятков");
-        System.out.println(Ones + " единиц\n");
+        int number = 123;
+        int ones = number % 10;
+        int tens = (number / 10) % 10;
+        int hundreds = (number / 100) % 10;
+        System.out.println("Число N содержит:\n" + hundreds + " сотен\n" + tens + " десятков\n" + ones + " единиц\n");
 
         System.out.println("8. Вывод на консоль ASCII-арт Дюка");
         char slash = '/';
@@ -112,13 +109,13 @@ public class VariablesTheme {
 
         System.out.println("9. Произведение и сумма цифр числа");
         short originalNum = 345;
-        Ones = originalNum % 10;
-        Tens = (originalNum / 10) % 10;
-        Hundreds = (originalNum / 100) % 10;
-        int SumDigits = Ones + Tens + Hundreds;
-        int ProdDigits = Ones * Tens * Hundreds;
-        System.out.println("сумма цифр числа " + originalNum + " = " + SumDigits);
-        System.out.println("произведение цифр числа " + originalNum + " = " + ProdDigits + '\n');
+        ones = originalNum % 10;
+        tens = (originalNum / 10) % 10;
+        hundreds = (originalNum / 100) % 10;
+        int sumDigits = ones + tens + hundreds;
+        int prodDigits = ones * tens * hundreds;
+        System.out.println("сумма цифр числа " + originalNum + " = " + sumDigits);
+        System.out.println("произведение цифр числа " + originalNum + " = " + prodDigits + '\n');
 
         System.out.println("10. Преобразование секунд");
         int seconds = 86399;
