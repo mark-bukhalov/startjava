@@ -18,7 +18,7 @@ public class Calculator {
             for (int i = b; i > 0; i--) {
                 result *= a;
             }
-        } else if (sign == '%'){
+        } else if (sign == '%') {
             result = a % b;
         }
         System.out.println(a + " " + sign + " " + b + " = " + result);

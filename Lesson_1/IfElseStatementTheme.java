@@ -66,7 +66,7 @@ public class IfElseStatementTheme {
         int ones2 = srcNum2 % 10;
         int tens2 = (srcNum2 / 10) % 10;
         int hundreds2 = (srcNum2 / 100) % 10;
-        System.out.println("Исходные числа: " + srcNum1 + " и " +srcNum2);
+        System.out.println("Исходные числа: " + srcNum1 + " и " + srcNum2);
         if (ones1 == ones2) {
             System.out.println("Разряд 1, одинаковое число " + ones1);
         }
@@ -79,18 +79,12 @@ public class IfElseStatementTheme {
 
         System.out.println("\n5. Определение буквы, числа или символа по их коду");
         char symbol = '\u0057';
-        char begDigit = '0';
-        char endDigit = '9';
-        char begSmallLetter = 'a';
-        char endSmallLetter = 'z';
-        char begCapitalLetter = 'A';
-        char endCapitalLetter = 'Z';
         System.out.print(symbol);
-        if (symbol >= begDigit & symbol <= endDigit) {
+        if (symbol >= '0' && symbol <= '9') {
             System.out.println(" число");
-        } else if (symbol >= begSmallLetter & symbol <= endSmallLetter){
+        } else if (symbol >= 'a' && symbol <= 'z') {
             System.out.println(" маленькая буква");
-        } else if (symbol >= begCapitalLetter & symbol <= endCapitalLetter){
+        } else if (symbol >= 'A' && symbol <= 'Z') {
             System.out.println(" большая буква");
         } else {
             System.out.println(" не буква и не число");
@@ -148,10 +142,10 @@ public class IfElseStatementTheme {
         int ones = reqAmount % 10;
         int tens = (reqAmount / 10) % 10;
         int hundreds = (reqAmount / 100) % 10;
-        final int MAX_TENS = 5;
-        if (tens > MAX_TENS) {
-            ones += (tens - MAX_TENS) * 10;
-            tens = MAX_TENS;
+        final int maxTensBanknot = 5;
+        if (tens > maxTensBanknot) {
+            ones += (tens - maxTensBanknot) * 10;
+            tens = maxTensBanknot;
         }
         int checkReqAmount = hundreds * 100 + tens * 10 + ones;
         System.out.printf("Номинал: %3s\tКоличество: %2s\n", 1, ones);
