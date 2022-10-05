@@ -10,7 +10,7 @@ public class Jaeger {
 
     boolean drift() {
         System.out.println("Вы пошли в дрифт");
-        return True;
+        return true;
     }
 
     void move() {
