@@ -11,10 +11,9 @@ public class GuessNumber {
     }
 
     public void launch() {
-        generateNewNumber();
+        generateSecretNum();
         Scanner scan = new Scanner(System.in);
         while (true) {
-            boolean isGuessed;
             System.out.printf("%n%s ваш ход: ", player1.getName());
             player1.setNumber(scan.nextInt());
             if (compareNumbers(player1)) {
@@ -28,14 +27,14 @@ public class GuessNumber {
         }
     }
 
-    public void generateNewNumber() {
+    private void generateSecretNum() {
         secretNum = (int) (1 + Math.random() * 101);
         System.out.print("\nНовая игра");
     }
 
     private boolean compareNumbers(Player player) {
         if (player.getNumber() == secretNum) {
-            System.out.printf("Игрок %s победил!", player.getName());
+            System.out.printf("Игрок %s победил!\n", player.getName());
             return true;
         }
         if (player.getNumber() > secretNum) {
