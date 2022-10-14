@@ -1,4 +1,4 @@
-public class Calculator extends Object {
+public class Calculator {
     private int a;
     private int b;
     private char sign;
@@ -32,7 +32,6 @@ public class Calculator extends Object {
     }
 
     public int calculate() {
-
         switch (sign) {
             case '+':
                 return a + b;
