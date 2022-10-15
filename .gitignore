@@ -1,2 +1,4 @@
 # Compiled Files
 *.class
+# Folder
+/out
