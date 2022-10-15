@@ -2,3 +2,6 @@
 *.class
 # Folder
 /out
+# Other Files
+**/options
+**/optionsj
