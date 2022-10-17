@@ -5,21 +5,16 @@ import java.util.Arrays;
 public class ArrayTheme {
     public static void main(String[] args) {
         System.out.println("1. Реверс значений массива");
-        int[] intArr = {3, 2, 1, 7, 6, 5, 4,};
-        int len = intArr.length;
-        for (int number : intArr) {
-            System.out.print(number + " ");
-        }
-        for (int i = 0; i < len / 2; i++) {
-            int reverseIndex = len - 1 - i;
+        int[] intArr = {3, 2, 1, 7, 6, 5, 4};
+        int len = intArr.length - 1;
+        printIntArr(intArr);
+        for (int i = 0; i <= len / 2; i++, len--) {
             int temp = intArr[i];
-            intArr[i] = intArr[reverseIndex];
-            intArr[reverseIndex] = temp;
+            intArr[i] = intArr[len];
+            intArr[len] = temp;
         }
         System.out.println();
-        for (int number : intArr) {
-            System.out.print(number + " ");
-        }
+        printIntArr(intArr);
 
         System.out.println("\n\n2. Вывод произведения элементов массива");
         intArr = new int[10];
@@ -27,45 +22,31 @@ public class ArrayTheme {
         for (int i = 0; i < len; i++) {
             intArr[i] = i;
         }
-        int numbersProduct = 1;
+        int prodDigit = 1;
         for (int i = 1; i < 9; i++) {
-            numbersProduct *= intArr[i];
-            System.out.print(intArr[i] + (i != len - 2 ? " * " : " = " + numbersProduct));
+            prodDigit *= intArr[i];
+            System.out.print(intArr[i] + (i != len - 2 ? " * " : " = " + prodDigit));
         }
         System.out.println("\n" + intArr[0] + " и " + intArr[9]);
 
         System.out.println("\n3.Удаление элементов массива");
-        double[] doubleNums = new double[15];
-        len = doubleNums.length;
+        double[] doubleArr = new double[15];
+        len = doubleArr.length;
         for (int i = 0; i < len; i++) {
-            doubleNums[i] = Math.random();
+            doubleArr[i] = Math.random();
         }
-
         System.out.println("Исходный массив:");
-        for (int i = 0; i < len; i++) {
-            if (i == 8) {
-                System.out.println();
-            }
-            System.out.printf("%6.3f", doubleNums[i]);
-        }
-
-        int avgIndex = (len / 2) + 1;
+        printDoubleArr(doubleArr);
         int countReset = 0;
-        double avgValue = doubleNums[avgIndex];
+        double middleNum = doubleArr[(len / 2) + 1];
         for (int i = 0; i < len; i++) {
-            if (doubleNums[i] > avgValue) {
-                doubleNums[i] = 0;
+            if (doubleArr[i] > middleNum) {
+                doubleArr[i] = 0;
                 countReset++;
             }
         }
-
         System.out.println("\nИзменённый массив:");
-        for (int i = 0; i < len; i++) {
-            if (i == 8) {
-                System.out.println();
-            }
-            System.out.printf("%6.3f", doubleNums[i]);
-        }
+        printDoubleArr(doubleArr);
         System.out.println("\nКоличество обнулений: " + countReset);
 
         System.out.print("\n4. Вывод элементов массива лесенкой в обратном порядке");
@@ -124,15 +105,24 @@ public class ArrayTheme {
             }
         }
         System.out.println("Исходный массив:");
-        for (String element : stringArr1) {
-            System.out.printf("[%s] ", element);
-        }
-        System.out.print("\nНовый массив:");
-        System.out.println();
-        for (String element : stringArr2) {
-            System.out.printf("[%s] ", element);
-        }
+        printStringArr(stringArr1);
+        System.out.print("\nНовый массив:\n");
+        printStringArr(stringArr2);
+    }
 
+    private static void printIntArr(int[] intArr) {
+        for (int number : intArr) {
+            System.out.print(number + " ");
+        }
+    }
+
+    private static void printDoubleArr(double[] doubleArr) {
+        for (int i = 0; i < doubleArr.length; i++) {
+            if (i == 8) {
+                System.out.println();
+            }
+            System.out.printf("%6.3f", doubleArr[i]);
+        }
     }
 
     private static int generateRandomNum(int from, int to) {
@@ -146,5 +136,11 @@ public class ArrayTheme {
             }
         }
         return true;
+    }
+
+    private static void printStringArr(String[] stringArr) {
+        for (String element : stringArr) {
+            System.out.printf("[%s] ", element);
+        }
     }
 }
