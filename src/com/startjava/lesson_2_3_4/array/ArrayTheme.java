@@ -22,10 +22,10 @@ public class ArrayTheme {
         for (int i = 0; i < len; i++) {
             intArr[i] = i;
         }
-        int prodDigit = 1;
+        int prodDigits = 1;
         for (int i = 1; i < 9; i++) {
-            prodDigit *= intArr[i];
-            System.out.print(intArr[i] + (i != len - 2 ? " * " : " = " + prodDigit));
+            prodDigits *= intArr[i];
+            System.out.print(intArr[i] + (i != len - 2 ? " * " : " = " + prodDigits));
         }
         System.out.println("\n" + intArr[0] + " и " + intArr[9]);
 
@@ -50,16 +50,16 @@ public class ArrayTheme {
         System.out.println("\nКоличество обнулений: " + countReset);
 
         System.out.print("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] charArr = new char[26];
-        len = charArr.length;
+        char[] alpfabet = new char[26];
+        len = alpfabet.length;
         char symbol = 'A';
         for (int i = 0; i < len; i++) {
-            charArr[i] = symbol;
+            alpfabet[i] = symbol;
             symbol++;
         }
         for (int i = len; i >= 0; i--) {
             for (int j = len - 1; j >= i; j--) {
-                System.out.print(charArr[j]);
+                System.out.print(alpfabet[j]);
             }
             System.out.println();
         }
@@ -71,7 +71,7 @@ public class ArrayTheme {
             int randomNum;
             do {
                 randomNum = generateRandomNum(60, 100);
-            } while (numbIsUnigue(intArr, randomNum) != true);
+            } while (!isUnigue(intArr, randomNum));
             intArr[i] = randomNum;
         }
         Arrays.sort(intArr);
@@ -83,36 +83,36 @@ public class ArrayTheme {
         }
 
         System.out.print("\n\n6. Сдвиг элементов массива\n");
-        String[] stringArr1 = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         int countNotBlank = 0;
-        for (String element : stringArr1) {
+        for (String element : srcArr) {
             if (!element.isBlank()) {
                 countNotBlank++;
             }
         }
-        String[] stringArr2 = new String[countNotBlank];
-        int start1 = 0;
-        int start2 = 0;
+        String[] destArr = new String[countNotBlank];
+        int srcPos = 0;
+        int destPos = 0;
         len = 0;
-        for (int i = 0; i < stringArr1.length; i++) {
-            if (stringArr1[i].isBlank()) {
-                System.arraycopy(stringArr1, start1, stringArr2, start2, len);
-                start1 = i + 1;
-                start2 += len;
+        for (int i = 0; i < srcArr.length; i++) {
+            if (srcArr[i].isBlank()) {
+                System.arraycopy(srcArr, srcPos, destArr, destPos, len);
+                srcPos = i + 1;
+                destPos += len;
                 len = 0;
             } else {
                 len++;
             }
         }
         System.out.println("Исходный массив:");
-        printStringArr(stringArr1);
-        System.out.print("\nНовый массив:\n");
-        printStringArr(stringArr2);
+        printStringArr(srcArr);
+        System.out.println("\nНовый массив:");
+        printStringArr(destArr);
     }
 
     private static void printIntArr(int[] intArr) {
-        for (int number : intArr) {
-            System.out.print(number + " ");
+        for (int num : intArr) {
+            System.out.print(num + " ");
         }
     }
 
@@ -129,7 +129,7 @@ public class ArrayTheme {
         return (int) (from + (Math.random() * (to - from)));
     }
 
-    private static boolean numbIsUnigue(int[] intArr, int num) {
+    private static boolean isUnigue(int[] intArr, int num) {
         for (int element : intArr) {
             if (num == element) {
                 return false;
@@ -139,8 +139,8 @@ public class ArrayTheme {
     }
 
     private static void printStringArr(String[] stringArr) {
-        for (String element : stringArr) {
-            System.out.printf("[%s] ", element);
+        for (String letter : stringArr) {
+            System.out.printf("[%s] ", letter);
         }
     }
 }
