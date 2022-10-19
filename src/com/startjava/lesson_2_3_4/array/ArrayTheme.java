@@ -50,16 +50,16 @@ public class ArrayTheme {
         System.out.println("\nКоличество обнулений: " + countReset);
 
         System.out.print("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] alpfabet = new char[26];
-        len = alpfabet.length;
+        char[] alphabet = new char[26];
+        len = alphabet.length;
         char symbol = 'A';
         for (int i = 0; i < len; i++) {
-            alpfabet[i] = symbol;
+            alphabet[i] = symbol;
             symbol++;
         }
         for (int i = len; i >= 0; i--) {
             for (int j = len - 1; j >= i; j--) {
-                System.out.print(alpfabet[j]);
+                System.out.print(alphabet[j]);
             }
             System.out.println();
         }
@@ -71,7 +71,7 @@ public class ArrayTheme {
             int randomNum;
             do {
                 randomNum = generateRandomNum(60, 100);
-            } while (!isUnigue(intArr, randomNum));
+            } while (!isUnique(intArr, randomNum));
             intArr[i] = randomNum;
         }
         Arrays.sort(intArr);
@@ -129,7 +129,7 @@ public class ArrayTheme {
         return (int) (from + (Math.random() * (to - from)));
     }
 
-    private static boolean isUnigue(int[] intArr, int num) {
+    private static boolean isUnique(int[] intArr, int num) {
         for (int element : intArr) {
             if (num == element) {
                 return false;
