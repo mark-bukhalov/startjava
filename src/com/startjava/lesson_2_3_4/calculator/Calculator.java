@@ -5,6 +5,14 @@ public class Calculator {
     private int b;
     private char sign;
 
+    public void inputMathExpression(String mathExpression) {
+        String[] mathArr = new String[3];
+        mathArr = mathExpression.split(" ");
+        setA(Integer.parseInt(mathArr[0]));
+        setSign(mathArr[1].charAt(0));
+        setB(Integer.parseInt(mathArr[2]));
+    }
+
     public int getA() {
         return a;
     }
@@ -36,21 +44,17 @@ public class Calculator {
     public int calculate() {
         switch (sign) {
             case '+':
-                return a + b;
+                return Math.addExact(a, b);
             case '-':
                 return a - b;
             case '*':
-                return a * b;
+                return Math.multiplyExact(a, b);
             case '/':
-                return a / b;
+                return Math.floorDiv(a, b);
             case '^':
-                int result = 1;
-                for (int i = b; i > 0; i--) {
-                    result *= a;
-                }
-                return result;
+                return (int) Math.pow(a, b);
             case '%':
-                return a % b;
+                return Math.floorMod(a, b);
         }
         return 0;
     }
