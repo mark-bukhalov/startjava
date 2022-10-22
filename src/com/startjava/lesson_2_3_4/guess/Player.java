@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int number;
 
-    private int[] logNumbers = new int[10];
+    private int[] enteredNum = new int[10];
 
-    private int countAttempts = 0;
+    private int countAttempts;
 
     public Player(String name) {
         this.name = name;
@@ -18,17 +17,17 @@ public class Player {
         return name;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-        logNumber(number);
+    public void addNum(int num) {
+        enteredNum[countAttempts] = num;
+        countAttempts++;
     }
 
-    public int getNumber() {
-        return number;
+    public int getNum() {
+        return enteredNum[countAttempts - 1];
     }
 
-    public void refreshLog() {
-        Arrays.fill(logNumbers, 0, countAttempts, 0);
+    public void reset() {
+        Arrays.fill(enteredNum, 0, countAttempts, 0);
         countAttempts = 0;
     }
 
@@ -36,11 +35,9 @@ public class Player {
         return countAttempts;
     }
 
-    private void logNumber(int number) {
-        logNumbers[countAttempts] = number;
-        countAttempts++;
+    public int[] getNums() {
+        return Arrays.copyOf(enteredNum, countAttempts);
     }
 
-    public int[] getNumbers() {
-        return Arrays.copyOf(logNumbers, countAttempts);
-    }
+}
+

@@ -5,32 +5,21 @@ public class Calculator {
     private int b;
     private char sign;
 
-    public void inputMathExpression(String mathExpression) {
-        String[] mathArr = new String[3];
+    public void preparetMathExpression(String mathExpression) {
+        String[] mathArr;
         mathArr = mathExpression.split(" ");
         setA(Integer.parseInt(mathArr[0]));
         setSign(mathArr[1].charAt(0));
         setB(Integer.parseInt(mathArr[2]));
     }
 
-    public int getA() {
-        return a;
-    }
 
     public void setA(int a) {
         this.a = a;
     }
 
-    public int getB() {
-        return b;
-    }
-
     public void setB(int b) {
         this.b = b;
-    }
-
-    public char getSign() {
-        return sign;
     }
 
     public boolean setSign(char sign) {
@@ -41,7 +30,8 @@ public class Calculator {
         return false;
     }
 
-    public int calculate() {
+    public int calculate(String mathExpression) {
+        preparetMathExpression(mathExpression);
         switch (sign) {
             case '+':
                 return Math.addExact(a, b);
