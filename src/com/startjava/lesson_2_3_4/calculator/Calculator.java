@@ -5,21 +5,11 @@ public class Calculator {
     private int b;
     private char sign;
 
-    public void preparetMathExpression(String mathExpression) {
-        String[] mathArr;
-        mathArr = mathExpression.split(" ");
-        setA(Integer.parseInt(mathArr[0]));
-        setSign(mathArr[1].charAt(0));
-        setB(Integer.parseInt(mathArr[2]));
-    }
-
-
-    public void setA(int a) {
-        this.a = a;
-    }
-
-    public void setB(int b) {
-        this.b = b;
+    public void parseMathExpression(String mathExpression) {
+        String[] partsExpression = mathExpression.split(" ");
+        a = Integer.parseInt(partsExpression[0]);
+        setSign(partsExpression[1].charAt(0));
+        b = Integer.parseInt(partsExpression[2]);
     }
 
     public boolean setSign(char sign) {
@@ -31,7 +21,7 @@ public class Calculator {
     }
 
     public int calculate(String mathExpression) {
-        preparetMathExpression(mathExpression);
+        parseMathExpression(mathExpression);
         switch (sign) {
             case '+':
                 return Math.addExact(a, b);

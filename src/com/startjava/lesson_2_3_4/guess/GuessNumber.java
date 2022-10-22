@@ -15,22 +15,14 @@ public class GuessNumber {
 
     public void launch() {
         System.out.println("\nУ каждого игрока по 10 попыток");
+        System.out.print("Новая игра");
         resetPlayers();
         generateSecretNum();
-        Scanner scan = new Scanner(System.in);
-        while (true) {
-            changeActivePlayer();
-            System.out.printf("%n%s ваш ход: ", activePlayer.getName());
-            if (activePlayer.getCountAttempts() >= 10) {
-                System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
-                displayPlayersNums();
-                break;
-            }
-            activePlayer.addNum(scan.nextInt());
-            if (compareNums(activePlayer)) {
-                break;
-            }
+        boolean gameRun = true;
+        while (gameRun) {
+            gameRun = makeMove();
         }
+        displayPlayersNums();
     }
 
     private void resetPlayers() {
@@ -41,28 +33,35 @@ public class GuessNumber {
 
     private void generateSecretNum() {
         secretNum = (int) (1 + Math.random() * 100);
-        System.out.print("Новая игра");
+    }
+
+    private boolean makeMove() {
+        Scanner scan = new Scanner(System.in);
+        changeActivePlayer();
+        if (activePlayer.getCountAttempts() >= 10) {
+            System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
+            return false;
+        }
+        System.out.printf("%n%s ваш ход: ", activePlayer.getName());
+        activePlayer.addNum(scan.nextInt());
+        return compareNums(activePlayer) ? false : true;
     }
 
     private void changeActivePlayer() {
-        if (activePlayer == players[0]) {
-            activePlayer = players[1];
-        } else {
-            activePlayer = players[0];
-        }
+        activePlayer = (activePlayer == players[0] ? players[1] : players[0]);
     }
 
     private boolean compareNums(Player player) {
-        if (player.getNum() == secretNum) {
+        int playerNum = player.getNum();
+        if (playerNum == secretNum) {
             System.out.printf("Игрок %s угадал число %d c %d попытки\n",
-                    player.getName(), player.getNum(), player.getCountAttempts());
-            displayPlayersNums();
+                    player.getName(), playerNum, player.getCountAttempts());
             return true;
         }
-        if (player.getNum() > secretNum) {
-            System.out.printf("Число %d больше того, что загадал компьютер", player.getNum());
+        if (playerNum > secretNum) {
+            System.out.printf("Число %d больше того, что загадал компьютер", playerNum);
         } else {
-            System.out.printf("Число %d меньше того, что загадал компьютер", player.getNum());
+            System.out.printf("Число %d меньше того, что загадал компьютер", playerNum);
         }
         return false;
     }
@@ -77,4 +76,5 @@ public class GuessNumber {
         }
     }
 }
+
 
