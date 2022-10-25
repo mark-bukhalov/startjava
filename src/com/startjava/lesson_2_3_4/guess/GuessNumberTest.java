@@ -9,7 +9,9 @@ public class GuessNumberTest {
         Player player1 = new Player(scan.nextLine());
         System.out.print("Игрок 2, введите имя: ");
         Player player2 = new Player(scan.nextLine());
-        GuessNumber guessGame = new GuessNumber(player1, player2);
+        System.out.print("Игрок 3, введите имя: ");
+        Player player3 = new Player(scan.nextLine());
+        GuessNumber guessGame = new GuessNumber(player1, player2, player3);
         String playerAnswer = "yes";
         while (playerAnswer.equals("yes")) {
             guessGame.launch();

@@ -1,41 +1,34 @@
 package com.startjava.lesson_2_3.calculator;
 
 public class Calculator {
-    private int a;
-    private int b;
-    private char sign;
+    private static int a;
+    private static int b;
+    private static char sign;
 
-    public void parseMathExpression(String mathExpression) {
+    private static void parseMathExpression(String mathExpression) throws Exception {
         String[] partsExpression = mathExpression.split(" ");
+        ValidateNum(partsExpression);
         a = Integer.parseInt(partsExpression[0]);
-        setSign(partsExpression[1].charAt(0));
         b = Integer.parseInt(partsExpression[2]);
+        sign = partsExpression[1].charAt(0);
     }
 
-    public boolean setSign(char sign) {
-        if (sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^' || sign == '%') {
-            this.sign = sign;
-            return true;
+    private static void ValidateNum(String[] vaildationData) throws Exception {
+        if (!vaildationData[0].matches("\\d+") || !vaildationData[2].matches("\\d+")) {
+            throw new Exception("Возможен ввод только целых, положительных чисел");
         }
-        return false;
     }
 
-    public int calculate(String mathExpression) {
+    public static int calculate(String mathExpression) throws Exception {
         parseMathExpression(mathExpression);
-        switch (sign) {
-            case '+':
-                return Math.addExact(a, b);
-            case '-':
-                return a - b;
-            case '*':
-                return Math.multiplyExact(a, b);
-            case '/':
-                return Math.floorDiv(a, b);
-            case '^':
-                return (int) Math.pow(a, b);
-            case '%':
-                return Math.floorMod(a, b);
-        }
-        return 0;
+        return switch (sign) {
+            case '+' -> Math.addExact(a, b);
+            case '-' -> a - b;
+            case '*' -> Math.multiplyExact(a, b);
+            case '/' -> Math.floorDiv(a, b);
+            case '^' -> (int) Math.pow(a, b);
+            case '%' -> Math.floorMod(a, b);
+            default -> throw new IllegalStateException("Ошибочный знак операции");
+        };
     }
 }

@@ -5,12 +5,23 @@ import java.util.Scanner;
 public class CalculatorTest {
     public static void main(String[] args) {
         String userResponse = "yes";
-        Calculator calculator = new Calculator();
         Scanner console = new Scanner(System.in);
         while (userResponse.equals("yes")) {
+            String mathExpression;
+            boolean successInput;
+            int result = 0;
             System.out.print("Введите математическое выражение: ");
-            String mathExpression = console.nextLine();
-            int result = calculator.calculate(mathExpression);
+            do {
+                mathExpression = console.nextLine();
+                try {
+                    result = Calculator.calculate(mathExpression);
+                    successInput = true;
+                } catch (Exception e) {
+                    successInput = false;
+                    System.out.println("Ошибка: " + e.getMessage());
+                    System.out.print("Введите корректное значение:");
+                }
+            } while (!successInput);
             System.out.printf("%s = %d", mathExpression, result);
             do {
                 System.out.print("\nХотите продолжить вычисления? [yes/no] ");
