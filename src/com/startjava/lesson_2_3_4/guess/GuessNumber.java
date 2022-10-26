@@ -56,17 +56,16 @@ public class GuessNumber {
             System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
             return false;
         }
-        boolean successInput;
-        do {
+
+        while (true) {
             System.out.printf("%n%s ваш ход: ", activePlayer.getName());
             try {
                 activePlayer.addNum(scan.nextInt());
-                successInput = true;
-            } catch (Exception e) {
-                successInput = false;
+                break;
+            } catch (IllegalStateException e) {
                 System.out.print("Ошибка: " + e.getMessage());
             }
-        } while (!successInput);
+        }
         return compareNums(activePlayer);
     }
 

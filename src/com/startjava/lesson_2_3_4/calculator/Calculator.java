@@ -5,21 +5,7 @@ public class Calculator {
     private static int b;
     private static char sign;
 
-    private static void parseMathExpression(String mathExpression) throws Exception {
-        String[] partsExpression = mathExpression.split(" ");
-        ValidateNum(partsExpression);
-        a = Integer.parseInt(partsExpression[0]);
-        b = Integer.parseInt(partsExpression[2]);
-        sign = partsExpression[1].charAt(0);
-    }
-
-    private static void ValidateNum(String[] vaildationData) throws Exception {
-        if (!vaildationData[0].matches("\\d+") || !vaildationData[2].matches("\\d+")) {
-            throw new Exception("Возможен ввод только целых, положительных чисел");
-        }
-    }
-
-    public static int calculate(String mathExpression) throws Exception {
+    public static int calculate(String mathExpression) {
         parseMathExpression(mathExpression);
         return switch (sign) {
             case '+' -> Math.addExact(a, b);
@@ -31,4 +17,18 @@ public class Calculator {
             default -> throw new IllegalStateException("Ошибочный знак операции");
         };
     }
-}
+
+    private static void parseMathExpression(String mathExpression) {
+        String[] partsExpression = mathExpression.split(" ");
+        validateNum(partsExpression);
+        a = Integer.parseInt(partsExpression[0]);
+        b = Integer.parseInt(partsExpression[2]);
+        sign = partsExpression[1].charAt(0);
+    }
+
+    private static void validateNum(String[] validationData) {
+        if (!validationData[0].matches("\\d+") || !validationData[2].matches("\\d+")) {
+            throw new IllegalStateException
+                    ("Возможен ввод только целых, положительных чисел");
+        }
+    }

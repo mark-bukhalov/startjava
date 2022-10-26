@@ -16,12 +16,12 @@ public class Player {
         return name;
     }
 
-    public void addNum(int num) throws Exception {
+    public void addNum(int num) {
         if (num > 0 && num <= 100) {
             enteredNums[countAttempts] = num;
             countAttempts++;
         } else {
-            throw new Exception("Число не входит в полуинтервал (0, 100]");
+            throw new IllegalStateException("Число не входит в полуинтервал (0, 100]");
         }
 
     }
@@ -54,7 +54,6 @@ public class Player {
     public int[] getNums() {
         return Arrays.copyOf(enteredNums, countAttempts);
     }
-
 }
 
 

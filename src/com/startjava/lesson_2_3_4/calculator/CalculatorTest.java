@@ -8,20 +8,19 @@ public class CalculatorTest {
         Scanner console = new Scanner(System.in);
         while (userResponse.equals("yes")) {
             String mathExpression;
-            boolean successInput;
-            int result = 0;
+            int result;
             System.out.print("Введите математическое выражение: ");
-            do {
+
+            while (true) {
                 mathExpression = console.nextLine();
                 try {
                     result = Calculator.calculate(mathExpression);
-                    successInput = true;
-                } catch (Exception e) {
-                    successInput = false;
-                    System.out.println("Ошибка: " + e.getMessage());
-                    System.out.print("Введите корректное значение:");
+                    break;
+                } catch (IllegalStateException e) {
+                    System.out.println("Ошибка: " + e.getMessage() + "\nВведите корректное значение:");
                 }
-            } while (!successInput);
+            }
+
             System.out.printf("%s = %d", mathExpression, result);
             do {
                 System.out.print("\nХотите продолжить вычисления? [yes/no] ");

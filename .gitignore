@@ -2,6 +2,7 @@
 *.class
 # Folder
 /out
+/.idea
 # Other Files
 **/options
 **/optionsj
