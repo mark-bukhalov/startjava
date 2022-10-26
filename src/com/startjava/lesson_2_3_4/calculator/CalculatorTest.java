@@ -17,7 +17,7 @@ public class CalculatorTest {
                     result = Calculator.calculate(mathExpression);
                     break;
                 } catch (IllegalStateException e) {
-                    System.out.println("Ошибка: " + e.getMessage() + "\nВведите корректное значение:");
+                    System.out.print("Ошибка: " + e.getMessage() + "\nВведите корректное значение: ");
                 }
             }
 
