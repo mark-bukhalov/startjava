@@ -3,15 +3,11 @@ package com.startjava.lesson_2_3.guess;
 import java.util.Scanner;
 
 public class GuessNumberTest {
+    public static final int NUM_PLAYERS = 3;
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Игрок 1, введите имя: ");
-        Player player1 = new Player(scan.nextLine());
-        System.out.print("Игрок 2, введите имя: ");
-        Player player2 = new Player(scan.nextLine());
-        System.out.print("Игрок 3, введите имя: ");
-        Player player3 = new Player(scan.nextLine());
-        GuessNumber guessGame = new GuessNumber(player1, player2, player3);
+        GuessNumber guessGame = new GuessNumber(createPlayers());
         String playerAnswer = "yes";
         while (playerAnswer.equals("yes")) {
             guessGame.launch();
@@ -21,5 +17,17 @@ public class GuessNumberTest {
             } while (!playerAnswer.equals("yes") && !playerAnswer.equals("no"));
         }
     }
+
+    private static Player[] createPlayers() {
+        Player[] players = new Player[3];
+        Scanner scan = new Scanner(System.in);
+        for (int i = 0; i < NUM_PLAYERS; i++) {
+            System.out.printf("Игрок %S, введите имя: ", i + 1);
+            players[i] = new Player(scan.nextLine());
+        }
+        return players;
+    }
 }
+
+
 

@@ -17,13 +17,11 @@ public class Player {
     }
 
     public void addNum(int num) {
-        if (num > 0 && num <= 100) {
-            enteredNums[countAttempts] = num;
-            countAttempts++;
-        } else {
+        if (num <= 0 || num > 100) {
             throw new IllegalStateException("Число не входит в полуинтервал (0, 100]");
         }
-
+        enteredNums[countAttempts] = num;
+        countAttempts++;
     }
 
     public int getNum() {
@@ -55,5 +53,6 @@ public class Player {
         return Arrays.copyOf(enteredNums, countAttempts);
     }
 }
+
 
 

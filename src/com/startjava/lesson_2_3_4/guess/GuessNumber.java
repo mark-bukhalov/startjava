@@ -5,32 +5,29 @@ import java.util.Scanner;
 public class GuessNumber {
     private int secretNum;
     private Player[] players;
-    private Player activePlayer;
-    private int countGames;
+    private int rounds;
 
-    public GuessNumber(Player... playersIn) {
-        players = playersIn;
-        shufflePlayers();
+    public GuessNumber(Player... players) {
+        this.players = players;
+        castLots();
     }
 
     public void launch() {
         System.out.println("\nУ каждого игрока по 10 попыток");
         System.out.print("Новая игра");
-        countGames++;
+        rounds++;
         resetPlayers();
         generateSecretNum();
-        boolean stopGame = false;
-        while (!stopGame) {
-            stopGame = makeMove();
+        while (!makeMove()) {
         }
         displayPlayersNums();
-        if (countGames == 3) {
+        if (rounds == 3) {
             displayWinner();
             resetScores();
         }
     }
 
-    private void shufflePlayers() {
+    private void castLots() {
         for (int i = players.length - 1; i > 0; i--) {
             int j = (int) (Math.random() * i);
             Player temp = players[j];
@@ -51,40 +48,34 @@ public class GuessNumber {
 
     private boolean makeMove() {
         Scanner scan = new Scanner(System.in);
-        changeActivePlayer();
-        if (activePlayer.getCountAttempts() >= 10) {
-            System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
-            return false;
-        }
 
-        while (true) {
-            System.out.printf("%n%s ваш ход: ", activePlayer.getName());
-            try {
-                activePlayer.addNum(scan.nextInt());
-                break;
-            } catch (IllegalStateException e) {
-                System.out.print("Ошибка: " + e.getMessage());
+        for (Player activePlayer : players) {
+            if (activePlayer.getCountAttempts() >= 10) {
+                System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
+                return false;
+            }
+
+            while (true) {
+                System.out.printf("%n%s ваш ход: ", activePlayer.getName());
+                try {
+                    activePlayer.addNum(scan.nextInt());
+                    break;
+                } catch (IllegalStateException e) {
+                    System.out.print("Ошибка: " + e.getMessage());
+                }
+            }
+            if (compareNums(activePlayer)) {
+                return true;
             }
         }
-        return compareNums(activePlayer);
-    }
-
-    private void changeActivePlayer() {
-        if (activePlayer == players[0]) {
-            activePlayer = players[1];
-        } else if (activePlayer == players[1]) {
-            activePlayer = players[2];
-        } else {
-            activePlayer = players[0];
-        }
+        return false;
     }
 
     private boolean compareNums(Player player) {
         int playerNum = player.getNum();
         if (playerNum == secretNum) {
             player.incScore();
-            System.out.printf("Игрок %s угадал число %d c %d попытки\n",
-                    player.getName(), playerNum, player.getCountAttempts());
+            System.out.printf("Игрок %s угадал число %d c %d попытки\n", player.getName(), playerNum, player.getCountAttempts());
             return true;
         }
         String textCompare = playerNum > secretNum ? "больше" : "меньше";
@@ -128,14 +119,14 @@ public class GuessNumber {
             }
         }
         System.out.println();
-
     }
 
     private void resetScores() {
-        countGames = 0;
+        rounds = 0;
         for (Player player : players) {
             player.resetScore();
         }
     }
 }
+
 
