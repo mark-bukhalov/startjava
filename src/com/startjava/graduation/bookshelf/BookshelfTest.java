@@ -105,7 +105,7 @@ public class BookshelfTest {
     }
 
     private static void displayCountBook() {
-        System.out.printf("Количество книг в шкафу: %d%n", bookshelf.getCountBook());
+        System.out.printf("Количество книг в шкафу: %d%n", bookshelf.getCountBooks());
     }
 
     private static void displayFreePlaces() {
@@ -124,7 +124,7 @@ public class BookshelfTest {
     }
 
     private static void displayBookshelf() {
-        int countBooks = bookshelf.getCountBook();
+        int countBooks = bookshelf.getCountBooks();
         int countFreePlaces = bookshelf.getCountFreePlaces();
         if (countBooks == 0) {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");

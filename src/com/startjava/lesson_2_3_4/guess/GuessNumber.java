@@ -3,6 +3,8 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumber {
+    public static final int NUM_ROUNDS = 3;
+    public static final int MAX_ATTEMPTS = 10;
     private int secretNum;
     private Player[] players;
     private int rounds;
@@ -13,15 +15,14 @@ public class GuessNumber {
     }
 
     public void launch() {
-        System.out.println("\nУ каждого игрока по 10 попыток");
+        System.out.println("\nУ каждого игрока по " + MAX_ATTEMPTS + " попыток");
         System.out.print("Новая игра");
         rounds++;
         resetPlayers();
         generateSecretNum();
-        while (!makeMove()) {
-        }
+        while (!makeMove()) {}
         displayPlayersNums();
-        if (rounds == 3) {
+        if (rounds == NUM_ROUNDS) {
             displayWinner();
             resetScores();
         }
@@ -50,7 +51,7 @@ public class GuessNumber {
         Scanner scan = new Scanner(System.in);
 
         for (Player activePlayer : players) {
-            if (activePlayer.getCountAttempts() >= 10) {
+            if (activePlayer.getCountAttempts() >= MAX_ATTEMPTS) {
                 System.out.printf("%nУ игрока %s закончились попытки!\n", activePlayer.getName());
                 return false;
             }
@@ -75,7 +76,8 @@ public class GuessNumber {
         int playerNum = player.getNum();
         if (playerNum == secretNum) {
             player.incScore();
-            System.out.printf("Игрок %s угадал число %d c %d попытки\n", player.getName(), playerNum, player.getCountAttempts());
+            System.out.printf("Игрок %s угадал число %d c %d попытки\n",
+                    player.getName(), playerNum, player.getCountAttempts());
             return true;
         }
         String textCompare = playerNum > secretNum ? "больше" : "меньше";
@@ -119,6 +121,7 @@ public class GuessNumber {
             }
         }
         System.out.println();
+
     }
 
     private void resetScores() {
@@ -128,5 +131,3 @@ public class GuessNumber {
         }
     }
 }
-
-

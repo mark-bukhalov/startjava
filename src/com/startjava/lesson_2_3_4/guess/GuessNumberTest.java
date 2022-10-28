@@ -1,4 +1,4 @@
-package com.startjava.lesson_2_3.guess;
+package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class GuessNumberTest {
     }
 
     private static Player[] createPlayers() {
-        Player[] players = new Player[3];
+        Player[] players = new Player[NUM_PLAYERS];
         Scanner scan = new Scanner(System.in);
         for (int i = 0; i < NUM_PLAYERS; i++) {
             System.out.printf("Игрок %S, введите имя: ", i + 1);
@@ -28,6 +28,3 @@ public class GuessNumberTest {
         return players;
     }
 }
-
-
-
