@@ -3,58 +3,60 @@ package com.startjava.graduation.bookshelf
 import java.util.Arrays;
 
 public class Bookshelf {
-    private static final int BOOKSHELF_SIZE = 10;
-    int countBooks = 0;
-    private Book[] books = new Book[BOOKSHELF_SIZE];
+    private static final int BOOKSHELF_LIMIT = 10;
+    int count = 0;
+    private Book[] books = new Book[BOOKSHELF_LIMIT];
 
-    public void addBook(Book book) {
-        books[countBooks] = book;
-        countBooks++;
+    public void add(Book book) {
+        books[count] = book;
+        count++;
     }
 
-    public void deleteBook(String bookName) {
-        int bookIndx = getBookIndx(bookName);
-        System.arraycopy(books, bookIndx + 1, books, bookIndx, countBooks - bookIndx - 1);
-        countBooks--;
+    public void delete(String name) {
+        int index = findIndex(name);
+        if (index < 0) {
+            throw new IllegalStateException("Книга не найдена");
+        }
+        System.arraycopy(books, index + 1, books, index, count - index - 1);
+        count--;
     }
 
-    public Book findBook(String bookName) {
-        for (int i = 0; i < countBooks; i++) {
-            if (books[i].getName().equals(bookName)) {
+    public Book find(String name) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getName().equals(name)) {
                 return books[i];
             }
         }
-        throw new IllegalStateException("Книга не найдена");
+        return null;
     }
 
-    public int getCountBooks() {
-        return countBooks;
+    public int getCount() {
+        return count;
     }
 
     public int getCountFreePlaces() {
-        return BOOKSHELF_SIZE - countBooks;
+        return BOOKSHELF_LIMIT - count;
     }
 
     public void clear() {
-        Arrays.fill(books, 0, countBooks, null);
-        countBooks = 0;
+        Arrays.fill(books, 0, count, null);
+        count = 0;
     }
 
     public Book[] getBooks() {
-        return Arrays.copyOf(books, countBooks);
+        return Arrays.copyOf(books, count);
     }
 
     public boolean isFull() {
-        return (countBooks >= BOOKSHELF_SIZE);
+        return (count >= BOOKSHELF_LIMIT);
     }
 
-    private int getBookIndx(String bookName) {
-        for (int i = 0; i < countBooks; i++) {
-            if (books[i].getName().equals(bookName)) {
+    private int findIndex(String name) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getName().equals(name)) {
                 return i;
             }
         }
-        throw new IllegalStateException("Книга не найдена");
+        return -1;
     }
 }
-
