@@ -9,12 +9,13 @@ public class BookshelfTest {
     private static final int CLEAR_BOOKSHELF = 4;
     private static final int EXIT = 5;
     private static Bookshelf bookshelf;
+
     private static Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) {
         bookshelf = new Bookshelf();
-        boolean stopProgramm = false;
-        while (!stopProgramm) {
+        boolean isRun = true;
+        while (isRun) {
             displayBookshelf();
             System.out.print("""
                     1. Добавить книгу
@@ -25,7 +26,7 @@ public class BookshelfTest {
                     """);
             System.out.print("Выберите функцию: ");
             try {
-                stopProgramm = performUserAction(console.nextInt());
+                isRun = executeUserSelection(console.nextInt());
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
@@ -33,23 +34,23 @@ public class BookshelfTest {
         }
     }
 
-    private static boolean performUserAction(int menuItem) {
+    private static boolean executeUserSelection(int menuItem) {
         console.nextLine();
         switch (menuItem) {
             case ADD_BOOK:
                 addBook();
-                return false;
+                return true;
             case DELETE_BOOK:
                 deleteBook();
-                return false;
+                return true;
             case FIND_BOOK:
                 findBook();
-                return false;
+                return true;
             case CLEAR_BOOKSHELF:
                 clearBookshelf();
-                return false;
-            case EXIT:
                 return true;
+            case EXIT:
+                return false;
             default:
                 throw new IllegalStateException("Указан неправильный номер функции");
         }
@@ -61,12 +62,12 @@ public class BookshelfTest {
             return;
         }
         System.out.print("Автор книги: ");
-        String Author = console.nextLine();
+        String author = console.nextLine();
         System.out.print("Название книги: ");
-        String Name = console.nextLine();
+        String name = console.nextLine();
         System.out.print("Год книги: ");
-        int Year = console.nextInt();
-        Book newBook = new Book(Author, Name, Year);
+        int year = console.nextInt();
+        Book newBook = new Book(author, name, year);
         bookshelf.add(newBook);
     }
 
@@ -83,11 +84,7 @@ public class BookshelfTest {
         System.out.print("Введите название книги: ");
         String name = console.nextLine();
         Book book = bookshelf.find(name);
-        if (book != null) {
-            System.out.println(book);
-        } else {
-            System.out.println("Книга не найдена");
-        }
+        System.out.println((book != null) ? book : ("Книга не найдена");
     }
 
     private static void clearBookshelf() {
@@ -102,20 +99,22 @@ public class BookshelfTest {
 
     private static void displayBookshelf() {
         int countBooks = bookshelf.getCount();
-        int countFreePlaces = bookshelf.getCountFreePlaces();
+
         if (countBooks == 0) {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");
         } else {
-            System.out.printf("\nШкаф содержит %d книг. Кол-во свободных полок %d .\n\n", countBooks, countFreePlaces);
+            int countEmptyShelfs = bookshelf.getCountEmptyShelfs();
+            int max_lenght = bookshelf.getMaxLenght();
+            System.out.printf("\nШкаф содержит %d книг. Кол-во свободных полок %d .\n\n",
+                    countBooks, countEmptyShelfs);
             Book[] books = bookshelf.getBooks();
             for (Book book : books) {
-                System.out.printf("|%-50s|%n", book);
-                System.out.println("|" + "-".repeat(50) + '|');
+                System.out.printf("|%-" + (max_lenght) + "s|%n", book);
+                System.out.println("|" + "-".repeat(max_lenght) + '|');
             }
-            if (countFreePlaces != 0) {
-                System.out.println("|" + " ".repeat(50) + "|");
+            if (countEmptyShelfs != 0) {
+                System.out.println("|" + " ".repeat(max_lenght) + "|");
             }
         }
         System.out.println();
     }
-}

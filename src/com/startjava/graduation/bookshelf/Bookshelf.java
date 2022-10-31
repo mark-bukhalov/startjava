@@ -4,12 +4,15 @@ import java.util.Arrays;
 
 public class Bookshelf {
     private static final int BOOKSHELF_LIMIT = 10;
-    int count = 0;
+    private int count = 0;
     private Book[] books = new Book[BOOKSHELF_LIMIT];
+    private int maxLenght;
 
     public void add(Book book) {
         books[count] = book;
+        calcucateMaxLenght(book);
         count++;
+
     }
 
     public void delete(String name) {
@@ -17,8 +20,12 @@ public class Bookshelf {
         if (index < 0) {
             throw new IllegalStateException("Книга не найдена");
         }
-        System.arraycopy(books, index + 1, books, index, count - index - 1);
+        int lenght = books[index].getLenght();
         count--;
+        System.arraycopy(books, index + 1, books, index, count - index);
+        if (lenght == maxLenght) {
+            calcucateMaxLenght();
+        }
     }
 
     public Book find(String name) {
@@ -34,9 +41,14 @@ public class Bookshelf {
         return count;
     }
 
-    public int getCountFreePlaces() {
+    public int getCountEmptyShelfs() {
         return BOOKSHELF_LIMIT - count;
     }
+
+    public int getMaxLenght(){
+        return maxLenght;
+    }
+
 
     public void clear() {
         Arrays.fill(books, 0, count, null);
@@ -49,6 +61,23 @@ public class Bookshelf {
 
     public boolean isFull() {
         return (count >= BOOKSHELF_LIMIT);
+    }
+
+    private void calcucateMaxLenght() {
+        maxLenght = 0;
+        for (int i = 0; i < count; i++) {
+            int lenght = books[i].getLenght();
+            if (lenght > maxLenght) {
+                maxLenght = lenght;
+            }
+        }
+    }
+
+    private void calcucateMaxLenght(Book book) {
+        int lenght = book.getLenght();
+        if (lenght > maxLenght) {
+            maxLenght = lenght;
+        }
     }
 
     private int findIndex(String name) {
