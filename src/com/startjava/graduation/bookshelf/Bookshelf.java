@@ -12,7 +12,6 @@ public class Bookshelf {
         books[count] = book;
         calcucateMaxLenght(book);
         count++;
-
     }
 
     public void delete(String name) {
