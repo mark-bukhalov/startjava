@@ -72,10 +72,10 @@ public class BookshelfTest {
     }
 
     private static void deleteBook() {
-        System.out.print("Название книги для удаления:");
+        System.out.print("Название книги для удаления: ");
         try {
             bookshelf.delete(console.nextLine());
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             System.out.println("Удаление невозможно. " + e.getMessage());
         }
     }
@@ -84,7 +84,7 @@ public class BookshelfTest {
         System.out.print("Введите название книги: ");
         String name = console.nextLine();
         Book book = bookshelf.find(name);
-        System.out.println((book != null) ? book : ("Книга не найдена");
+        System.out.println((book != null) ? book : ("Книга не найдена"));
     }
 
     private static void clearBookshelf() {
@@ -104,17 +104,18 @@ public class BookshelfTest {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");
         } else {
             int countEmptyShelfs = bookshelf.getCountEmptyShelfs();
-            int max_lenght = bookshelf.getMaxLenght();
+            int maxLenght = bookshelf.getMaxLenght();
             System.out.printf("\nШкаф содержит %d книг. Кол-во свободных полок %d .\n\n",
                     countBooks, countEmptyShelfs);
             Book[] books = bookshelf.getBooks();
             for (Book book : books) {
-                System.out.printf("|%-" + (max_lenght) + "s|%n", book);
-                System.out.println("|" + "-".repeat(max_lenght) + '|');
+                System.out.printf("|%-" + (maxLenght) + "s|%n", book);
+                System.out.println("|" + "-".repeat(maxLenght) + '|');
             }
             if (countEmptyShelfs != 0) {
-                System.out.println("|" + " ".repeat(max_lenght) + "|");
+                System.out.println("|" + " ".repeat(maxLenght) + "|");
             }
         }
         System.out.println();
     }
+}

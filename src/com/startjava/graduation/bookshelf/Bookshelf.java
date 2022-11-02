@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Bookshelf {
     private static final int BOOKSHELF_LIMIT = 10;
-    private int count = 0;
+    private int count;
     private Book[] books = new Book[BOOKSHELF_LIMIT];
     private int maxLenght;
 
@@ -12,6 +12,7 @@ public class Bookshelf {
         books[count] = book;
         calcucateMaxLenght(book);
         count++;
+
     }
 
     public void delete(String name) {
@@ -19,7 +20,7 @@ public class Bookshelf {
         if (index < 0) {
             throw new IllegalStateException("Книга не найдена");
         }
-        int lenght = books[index].getLenght();
+        int lenght = books[index].toString().length();
         count--;
         System.arraycopy(books, index + 1, books, index, count - index);
         if (lenght == maxLenght) {
@@ -44,7 +45,7 @@ public class Bookshelf {
         return BOOKSHELF_LIMIT - count;
     }
 
-    public int getMaxLenght(){
+    public int getMaxLenght() {
         return maxLenght;
     }
 
@@ -65,15 +66,12 @@ public class Bookshelf {
     private void calcucateMaxLenght() {
         maxLenght = 0;
         for (int i = 0; i < count; i++) {
-            int lenght = books[i].getLenght();
-            if (lenght > maxLenght) {
-                maxLenght = lenght;
-            }
+            calcucateMaxLenght(books[i]);
         }
     }
 
     private void calcucateMaxLenght(Book book) {
-        int lenght = book.getLenght();
+        int lenght = book.toString().length();
         if (lenght > maxLenght) {
             maxLenght = lenght;
         }

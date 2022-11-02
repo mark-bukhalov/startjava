@@ -19,8 +19,4 @@ public class Book {
     public String toString() {
         return author + " " + name + " " + year;
     }
-
-    public int getLenght(){
-        return author.length() + name.length() + String.valueOf(year).length() + 2;
-    }
 }
