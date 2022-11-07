@@ -1,28 +1,44 @@
-SELECT * from jaegers;
+SELECT *
+  FROM jaegers;
 
-SELECT * from jaegers
-	where status = 'Active';
+SELECT *
+  FROM jaegers
+ WHERE status = 'Active';
 
-SELECT * from jaegers
-	where mark = 'Mark-1' or mark = 'Mark-3';
+SELECT * 
+  FROM jaegers
+  WHERE mark = 'Mark-1'
+     OR mark = 'Mark-3';
 
-SELECT * from jaegers
+SELECT *
+  FROM jaegers
 ORDER BY mark DESC;
 
-SELECT * from jaegers
-	where launch = (SELECT MIN(launch) from jaegers);
+SELECT *
+  FROM jaegers
+ WHERE launch =
+       (SELECT MIN(launch)
+          FROM jaegers);
 
-SELECT * from jaegers
-	where kaijukill = (SELECT MIN(kaijukill) from jaegers);
+SELECT *
+  FROM jaegers
+ WHERE kaijukill =
+       (SELECT MIN(kaijukill)
+       FROM jaegers);
 
-SELECT * from jaegers
-	where kaijukill = (SELECT MAX(kaijukill) from jaegers);
+SELECT *
+  FROM jaegers
+ WHERE kaijukill =
+	   (SELECT MAX(kaijukill)
+	   FROM jaegers);
 
-SELECT AVG(weight) from jaegers;
+SELECT AVG(weight)
+  FROM jaegers;
 
 UPDATE jaegers
-	SET kaijukill = kaijukill + 1
-where status = 'Active';
+   SET kaijukill = kaijukill + 1
+ WHERE status = 'Active';
 
-DELETE from jaegers
-	where status = 'Destroyed';
+DELETE
+  FROM jaegers
+ WHERE status = 'Destroyed';
