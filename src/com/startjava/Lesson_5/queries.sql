@@ -29,8 +29,8 @@ SELECT *
 SELECT *
   FROM jaegers
  WHERE kaijukill =
-	   (SELECT MAX(kaijukill)
-	   FROM jaegers);
+       (SELECT MAX(kaijukill)
+       FROM jaegers);
 
 SELECT AVG(weight)
   FROM jaegers;
