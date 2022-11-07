@@ -7,8 +7,8 @@ SELECT *
 
 SELECT * 
   FROM jaegers
-  WHERE mark = 'Mark-1'
-     OR mark = 'Mark-3';
+ WHERE mark = 'Mark-1'
+    OR mark = 'Mark-3';
 
 SELECT *
   FROM jaegers
